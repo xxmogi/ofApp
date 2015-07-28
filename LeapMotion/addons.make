@@ -1,0 +1,4 @@
+ofxGui
+ofxLeapMotion
+ofxXmlSettings
+addons
