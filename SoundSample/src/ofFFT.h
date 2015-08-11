@@ -10,20 +10,29 @@
 #define SoundSample_ofFFT_h
 
 #include <Accelerate/Accelerate.h>
+#include "ofMain.h"
 
 
-class ofFFT {
+class ofFFT  : public ofBaseApp{
     FFTSetup setup;
     int size;
     int sizeLog2;
     float *buf;
     float *window;
     
-    DSPSplitComplex comp;
+    float *inputBuffer;
+    float *spectrum;
+    
+    
+    DSPSplitComplex fftInput;
     
 public:
     ofFFT(int size);
+    ~ofFFT();
     void update(float *input);
+    void audioReceived(float * input, int bufferSize, int nChannels);
+    float* getSpectrums();
+    float* getSignals();
 };
 
 #endif

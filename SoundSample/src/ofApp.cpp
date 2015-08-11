@@ -64,15 +64,15 @@ void ofApp::draw(){
     float max = 0;
     for (int i=1; i<=size/4.0; i++) {
         int xp = ofMap(i, 0, size/4.0, 100, ofGetWidth()-100);
-//        float val = sqrt(splitComplex.realp[i] *splitComplex.realp[i] + splitComplex.imagp[i] * splitComplex.imagp[i]);
-        float val = splitComplex.realp[i];
+        float v = sqrt(splitComplex.realp[i] *splitComplex.realp[i] + splitComplex.imagp[i] * splitComplex.imagp[i]);
+        float val = 10.0f * (float)log10(1 + v) * 2.0f;
         ofPushMatrix();
         ofTranslate(xp, ofGetHeight()/2);
         ofColor base;
         base = ofColor::fromHsb(0, 255, 255);
         base.setHueAngle(fmodf(initHue + (val*10),360));
         ofSetColor(base, 180);
-        ofDrawCircle(0, 0, MIN(val * fftratio, 400));
+        ofDrawCircle(0, 0, val * fftratio);
         ofPopMatrix();
     }
 
